@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+    web:
+        image: php:7.3-apache
+        ports:
+            - 80:80
+        volumes:
+            - ./vkusnoff:/var/www/html
+    mysql:
+        image: mysql:5.7
+        volumes:
+            - ./etc/mysql:/etc/mysql/conf.d
+            - ./storage/mysql:/var/lib/mysql
+        ports:
+            - "3306:3306"
+        environment:
+            - MYSQL_ALLOW_EMPTY_PASSWORD=1
