@@ -1,5 +1,5 @@
 ####################################
-# PHPDocker.io PHP 7.3 / FPM image #
+# PHPDocker.io PHP 7.3 / Apache #
 ####################################
 
 FROM phpdockerio/php73-cli
