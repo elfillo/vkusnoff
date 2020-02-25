@@ -2,7 +2,7 @@
 # PHPDocker.io PHP 7.3 / FPM image #
 ####################################
 
-FROM phpdockerio/php73-cli
+FROM php:7.3-apache
 
 # Install FPM
 RUN apt-get update \
