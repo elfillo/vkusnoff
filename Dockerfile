@@ -19,15 +19,13 @@ RUN apt-get update && apt-get -y --no-install-recommends install libapache2-mod-
     php7.3-readline \
     php7.3-xml \
     php7.3-zip \
-    wget \
     apache2 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
-
-RUN wget https://getcomposer.org/installer --no-check-certificate
-RUN php installer
-RUN ln -s /composer.phar /usr/bin/composer
-
+    cp /dev/null ${APACHE_CONF_DIR}/conf-available/other-vhosts-access-log.conf \
+    && rm ${APACHE_CONF_DIR}/sites-enabled/000-default.conf ${APACHE_CONF_DIR}/sites-available/000-default.conf \
+    && a2enmod rewrite php7.3 \
+    && curl -sS https://getcomposer.org/installer | php -- --version=1.8.4 --install-dir=/usr/local/bin --filename=composer
 # start apache
 EXPOSE 80
 CMD apache2ctl -D FOREGROUND
