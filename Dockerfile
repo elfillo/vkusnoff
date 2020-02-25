@@ -21,9 +21,7 @@ RUN apt-get update && apt-get -y --no-install-recommends install libapache2-mod-
     php7.3-zip \
     apache2 \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
-    cp /dev/null ${APACHE_CONF_DIR}/conf-available/other-vhosts-access-log.conf \
-    && rm ${APACHE_CONF_DIR}/sites-enabled/000-default.conf ${APACHE_CONF_DIR}/sites-available/000-default.conf \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* \
     && a2enmod rewrite php7.3 \
     && curl -sS https://getcomposer.org/installer | php -- --version=1.8.4 --install-dir=/usr/local/bin --filename=composer
 # start apache
